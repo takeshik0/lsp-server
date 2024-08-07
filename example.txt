@@ -1,0 +1,6 @@
+something = 123123;
+
+anything = 63453;
+
+
+using something we create anything.

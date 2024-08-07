@@ -1,5 +1,14 @@
+.clangd
+.ninja_log
+lsp
+
+#directories
+.vscode/
+build/
+
 # Prerequisites
 *.d
+
 
 # Compiled Object files
 *.slo
