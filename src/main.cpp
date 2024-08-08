@@ -1,9 +1,17 @@
 #include <iostream>
-#include "JsonRpcParser.hpp"
+#include "JsonRpc.hpp"
+#include "Server.hpp"
 
 int main () {
     std::cout << "hello develop lsp branch!" << std::endl;
-    JsonRpcParser parser("{\"jsonrpc\": \"2.0\", \"method\": \"subtract\", \"params\": [42, 23], \"id\": 1}");
+
+    std::string jsonFilePath = "request.json";
+
+    JsonRpc json;
+    json.parseRequest(jsonFilePath);
+
+    Server server;
+    server.gotoDefinition(json);
     
     return 0;
 }
