@@ -1,4 +1,5 @@
 #include "JsonRpcParser.hpp"
+#include <cctype>
 
 void JsonRpcParser::parseArgument(const std::string &typeOfArgument,
                                   std::string &argument) {
@@ -11,16 +12,15 @@ void JsonRpcParser::parseArgument(const std::string &typeOfArgument,
         keyword += m_jsonrpc[i];
         pos++;
       }
-      if (keyword == "params") {
+      if (keyword == typeOfArgument && typeOfArgument == "params") {
         pos++;
-        while ((m_jsonrpc[pos] != '}' || m_jsonrpc[pos] != ']') &&
-               pos < m_jsonrpc.size()) {
-          if (m_jsonrpc[pos] != '{' && m_jsonrpc[pos] != '[' &&
-              m_jsonrpc[pos] != ':') {
+        while (m_jsonrpc[pos] != ']' &&  m_jsonrpc[pos] != '}' && pos < m_jsonrpc.size()) {
+          if (m_jsonrpc[pos] != ':' && !std::isspace(m_jsonrpc[pos])) {
             argument += m_jsonrpc[pos];
           }
           pos++;
         }
+        argument += m_jsonrpc[pos];
       } else if (keyword == typeOfArgument) {
         pos++;
         while (m_jsonrpc[pos] != ',' && pos < m_jsonrpc.size()) {
