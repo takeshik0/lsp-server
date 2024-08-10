@@ -1,15 +1,10 @@
 #include "GotoDefinition.hpp"
+#include "JsonRpc.hpp"
 #include <cctype>
-#include <string>
 
 void GotoDefinition::parsePosition(std::string params) {}
 
 void GotoDefinition::parseParams(std::string params) {
-  const std::string URI_KEYWORD = "uri";
-  const std::string LINE_KEYWORD = "line";
-  const std::string START_CHARACTER_KEYWORD = "startCharacter";
-  const std::string END_CHARACTER_KEYWORD = "endCharacter";
-
   for (int pos = 0; pos < params.size(); pos++) {
     if (params[pos] == '"') {
       std::string keyword = "";

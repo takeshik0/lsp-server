@@ -1,6 +1,7 @@
 #include "JsonRpc.hpp"
 #include <cctype>
-#include <iostream>
+#include <fstream>
+#include <string>
 
 std::string JsonRpc::jsonToString(std::string jsonFilePath) {
   std::ifstream jsonFile(jsonFilePath);
@@ -13,7 +14,7 @@ std::string JsonRpc::jsonToString(std::string jsonFilePath) {
 }
 
 void JsonRpc::parseArgument(const std::string &typeOfArgument,
-                                  std::string &argument) {
+                            std::string &argument) {
   for (int pos = 0; pos < m_jsonrpc.size(); pos++) {
     if (m_jsonrpc[pos] == '"') {
       std::string keyword = "";
@@ -25,7 +26,6 @@ void JsonRpc::parseArgument(const std::string &typeOfArgument,
       }
       if (keyword == typeOfArgument && typeOfArgument == "params") {
         pos++;
-
 
         while (m_jsonrpc[pos] != '{' && pos < m_jsonrpc.size()) {
           pos++;
@@ -63,14 +63,10 @@ std::string JsonRpc::getJsonrpcVersion() { return m_jsonrpc_version; }
 std::string JsonRpc::getMethod() { return m_method; }
 std::string JsonRpc::getParams() { return m_params; }
 std::string JsonRpc::getId() { return m_id; }
+std::string JsonRpc::getJsonrpc() { return m_jsonrpc; }
 
-void JsonRpc::parseRequest(std::string& jsonFilePath) {
+void JsonRpc::parseRequest(std::string &jsonFilePath) {
   m_jsonrpc = jsonToString(jsonFilePath);
-
-  const std::string JSONRPC_VAR_KEYWORD = "jsonrpc";
-  const std::string METHOD_KEYWORD = "method";
-  const std::string PARAMS_KEYWORD = "params";
-  const std::string ID_KEYWORD = "id";
 
   parseArgument(JSONRPC_VAR_KEYWORD, m_jsonrpc_version);
   parseArgument(METHOD_KEYWORD, m_method);

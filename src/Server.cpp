@@ -3,18 +3,21 @@
 #include <fstream>
 #include <string>
 
-void Server::gotoDefinition(JsonRpc &json) {
+range Server::gotoDefinition(JsonRpc &json) {
   GotoDefinition method;
   method.parseParams(json.getParams());
-  
+
   std::ifstream file(method.getUri());
+  std::string exampleFile = "";
   std::string line;
-  for(int i = 0; i < method.getLine(); i++) {
-    std::getline(file, line);
+  for (int i = 1; std::getline(file, line) && i <= method.getLine(); i++) {
+    exampleFile += line;
   }
-  
-  std::string wordToSearch = line.substr(method.getStartCharacter(), method.getEndCharacter() - method.getStartCharacter());
 
-  int definition = 
+  std::string wordToSearch =
+      line.substr(method.getStartCharacter(),
+                  method.getEndCharacter() - method.getStartCharacter());
 
+  return {.start = exampleFile.find(wordToSearch),
+          .end = exampleFile.find(wordToSearch) + wordToSearch.size()};
 }

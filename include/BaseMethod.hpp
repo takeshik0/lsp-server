@@ -3,6 +3,6 @@
 
 class BaseMethod {
 public:
-    virtual void parseParams(std::string params) = 0;
-    virtual ~BaseMethod() = default;
+  virtual void parseParams(std::string params) = 0;
+  virtual ~BaseMethod() = default;
 };

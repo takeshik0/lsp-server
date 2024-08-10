@@ -12,8 +12,9 @@ build build/JsonRpc.o: compile src/JsonRpc.cpp
 build build/GotoDefinition.o: compile src/GotoDefinition.cpp
 build build/main.o: compile src/main.cpp
 build build/Server.o: compile src/Server.cpp
+build build/ResponseGenerator.o: compile src/ResponseGenerator.cpp
 
 
-build lsp: link build/JsonRpc.o build/main.o build/GotoDefinition.o build/Server.o
+build lsp: link build/JsonRpc.o build/main.o build/GotoDefinition.o build/Server.o build/ResponseGenerator.o
 
 default lsp
