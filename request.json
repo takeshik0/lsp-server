@@ -1,0 +1,15 @@
+{
+    "jsonrpc": "2.0",
+    "method": "gotoDefinition",
+    "params": {
+        "textDocument": {
+            "uri": "/home/takeshipro/Desktop/c++_projects/lsp-server/example.txt"
+        },
+        "position": {
+            "line": 6,
+            "startCharacter": 26,
+            "endCharacter": 34
+        }
+    },
+    "id": 1
+}
