@@ -1,10 +1,10 @@
-#include "GotoDefinition.hpp"
+#include "GotoDeclaration.hpp"
 #include "JsonRpc.hpp"
 #include <cctype>
 
-void GotoDefinition::parsePosition(std::string params) {}
+void GotoDeclaration::parsePosition(std::string params) {}
 
-void GotoDefinition::parseParams(std::string params) {
+void GotoDeclaration::parseParams(std::string params) {
   for (int pos = 0; pos < params.size(); pos++) {
     if (params[pos] == '"') {
       std::string keyword = "";
@@ -53,7 +53,7 @@ void GotoDefinition::parseParams(std::string params) {
   }
 }
 
-std::string GotoDefinition::getUri() { return m_uri; }
-int GotoDefinition::getLine() { return m_line; }
-int GotoDefinition::getStartCharacter() { return m_startCharacter; }
-int GotoDefinition::getEndCharacter() { return m_endCharacter; }
+std::string GotoDeclaration::getUri() { return m_uri; }
+int GotoDeclaration::getLine() { return m_line; }
+int GotoDeclaration::getStartCharacter() { return m_startCharacter; }
+int GotoDeclaration::getEndCharacter() { return m_endCharacter; }

@@ -1,7 +1,7 @@
 #pragma once
 #include "BaseMethod.hpp"
 
-class GotoDefinition : public BaseMethod {
+class GotoDeclaration : public BaseMethod {
 private:
   std::string m_uri;
   int m_line;

@@ -1,10 +1,10 @@
 #include "Server.hpp"
-#include "GotoDefinition.hpp"
+#include "GotoDeclaration.hpp"
 #include <fstream>
 #include <string>
 
 range Server::gotoDefinition(JsonRpc &json) {
-  GotoDefinition method;
+  GotoDeclaration method;
   method.parseParams(json.getParams());
 
   std::ifstream file(method.getUri());
