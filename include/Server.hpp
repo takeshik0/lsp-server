@@ -4,5 +4,5 @@
 class Server {
 private:
 public:
-  range gotoDefinition(JsonRpc &json);
+  range gotoDeclaration(JsonRpc &json);
 };

@@ -25,7 +25,7 @@ private:
   std::string m_params;
   std::string m_id;
 
-  std::string jsonToString(std::string jsonFilePath);
+  std::string jsonToString(const std::string& jsonFilePath);
   void parseArgument(const std::string &typeOfArgument, std::string &argument);
 
 public:

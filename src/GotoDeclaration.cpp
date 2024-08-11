@@ -1,10 +1,17 @@
 #include "GotoDeclaration.hpp"
 #include "JsonRpc.hpp"
+#include <algorithm>
 #include <cctype>
+#include <iterator>
 
 void GotoDeclaration::parsePosition(std::string params) {}
 
 void GotoDeclaration::parseParams(std::string params) {
+
+  std::copy_if(params.begin() + params.find(URI_KEYWORD) + URI_KEYWORD.size() +
+                   3,
+               params.begin() + params.find('}'), std::back_inserter(m_uri),
+               [](char c) { return c != '\"'; });
   for (int pos = 0; pos < params.size(); pos++) {
     if (params[pos] == '"') {
       std::string keyword = "";
@@ -16,8 +23,9 @@ void GotoDeclaration::parseParams(std::string params) {
       pos++;
       if (keyword == URI_KEYWORD) {
         while (params[pos] != '}' && pos < params.size()) {
-          if (params[pos] != ' ' && params[pos] != '"' && params[pos] != ':') {
-            m_uri += params[pos];
+          if (params[pos] != '\n' && params[pos] != ' ' && params[pos] != '"' &&
+              params[pos] != ':') {
+            //m_uri += params[pos];
           }
           pos++;
         }

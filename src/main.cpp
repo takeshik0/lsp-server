@@ -4,7 +4,6 @@
 #include <iostream>
 
 int main() {
-  std::cout << "hello develop lsp branch!" << std::endl;
 
   std::string jsonFilePath = "request.json";
 
@@ -12,9 +11,10 @@ int main() {
   json.parseRequest(jsonFilePath);
 
   Server server;
-  server.gotoDefinition(json);
+  server.gotoDeclaration(json);
 
-  ResponceGenerator response(json, server.gotoDefinition(json));
+  ResponceGenerator response(json, server.gotoDeclaration(json));
+  std::cout << "hello develop lsp branch!" << std::endl;
 
   return 0;
 }

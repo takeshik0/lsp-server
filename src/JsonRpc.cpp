@@ -1,16 +1,17 @@
 #include "JsonRpc.hpp"
 #include <cctype>
 #include <fstream>
+#include <sstream>
 #include <string>
 
-std::string JsonRpc::jsonToString(std::string jsonFilePath) {
+std::string JsonRpc::jsonToString(const std::string &jsonFilePath) {
   std::ifstream jsonFile(jsonFilePath);
-  std::string jsonrpc = "";
-  std::string line;
-  while (std::getline(jsonFile, line)) {
-    jsonrpc += line;
+  if (!jsonFile.is_open()) {
+    throw std::runtime_error("Could not open file");
   }
-  return jsonrpc;
+  std::stringstream buffer;
+  buffer << jsonFile.rdbuf();
+  return buffer.str();
 }
 
 void JsonRpc::parseArgument(const std::string &typeOfArgument,
