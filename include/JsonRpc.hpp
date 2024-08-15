@@ -1,5 +1,4 @@
 #pragma once
-#include <cstddef>
 #include <string>
 
 const std::string JSONRPC_VAR_KEYWORD = "jsonrpc";

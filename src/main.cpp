@@ -11,9 +11,9 @@ int main() {
   json.parseRequest(jsonFilePath);
 
   Server server;
-  server.gotoDeclaration(json);
+  auto result = server.gotoDeclaration(json);
 
-  ResponceGenerator response(json, server.gotoDeclaration(json));
+  ResponceGenerator response(json, result);
   std::cout << "hello develop lsp branch!" << std::endl;
 
   return 0;

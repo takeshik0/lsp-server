@@ -6,8 +6,8 @@
             "uri": "/home/takeshipro/Desktop/c++_projects/lsp-server/example.txt"
         },
         "position": {
-            "line": 6,
-            "startCharacter": 3,
+            "line": 3,
+            "startCharacter": 0,
             "endCharacter": 7
         }
     },
