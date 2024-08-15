@@ -27,24 +27,24 @@ void JsonRpc::parseArgument(const std::string &typeOfArgument,
     argument.erase(argument.begin() + argument.rfind(','), argument.end());
     return;
   }
-    m_jsonrpc.find(typeOfArgument);
-    int CHARACTERS_TO_SKIP = 4;
-    if (typeOfArgument == "id") {
-      CHARACTERS_TO_SKIP--;
-      auto startPos = m_jsonrpc.begin() + m_jsonrpc.find(typeOfArgument) +
-                      typeOfArgument.size() + CHARACTERS_TO_SKIP;
-
-      std::copy_if(startPos, m_jsonrpc.end(), std::back_inserter(argument),
-                   [](char ch) { return std::isdigit(ch); });
-    }
+  m_jsonrpc.find(typeOfArgument);
+  int CHARACTERS_TO_SKIP = 4;
+  if (typeOfArgument == "id") {
+    CHARACTERS_TO_SKIP--;
     auto startPos = m_jsonrpc.begin() + m_jsonrpc.find(typeOfArgument) +
                     typeOfArgument.size() + CHARACTERS_TO_SKIP;
 
-    std::copy(startPos,
-              m_jsonrpc.begin() +
-                  m_jsonrpc.find('\"', startPos - m_jsonrpc.begin()),
-              std::back_inserter(argument));
-    return;
+    std::copy_if(startPos, m_jsonrpc.end(), std::back_inserter(argument),
+                 [](char ch) { return std::isdigit(ch); });
+  }
+  auto startPos = m_jsonrpc.begin() + m_jsonrpc.find(typeOfArgument) +
+                  typeOfArgument.size() + CHARACTERS_TO_SKIP;
+
+  std::copy(startPos,
+            m_jsonrpc.begin() +
+                m_jsonrpc.find('\"', startPos - m_jsonrpc.begin()),
+            std::back_inserter(argument));
+  return;
 }
 
 std::string JsonRpc::getJsonrpcVersion() { return m_jsonrpc_version; }

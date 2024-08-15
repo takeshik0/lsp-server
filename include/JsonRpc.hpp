@@ -13,8 +13,9 @@ const std::string START_CHARACTER_KEYWORD = "startCharacter";
 const std::string END_CHARACTER_KEYWORD = "endCharacter";
 
 struct range {
-  std::size_t start;
-  std::size_t end;
+  int line;
+  int start;
+  int end;
 };
 
 class JsonRpc {
