@@ -1,6 +1,7 @@
 .clangd
 .ninja_log
 lsp
+response.json
 
 #directories
 .vscode/

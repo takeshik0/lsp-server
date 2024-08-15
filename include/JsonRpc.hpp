@@ -1,5 +1,4 @@
 #pragma once
-#include <cstddef>
 #include <string>
 
 const std::string JSONRPC_VAR_KEYWORD = "jsonrpc";
@@ -13,8 +12,9 @@ const std::string START_CHARACTER_KEYWORD = "startCharacter";
 const std::string END_CHARACTER_KEYWORD = "endCharacter";
 
 struct range {
-  std::size_t start;
-  std::size_t end;
+  int line;
+  int start;
+  int end;
 };
 
 class JsonRpc {
@@ -25,7 +25,7 @@ private:
   std::string m_params;
   std::string m_id;
 
-  std::string jsonToString(std::string jsonFilePath);
+  std::string jsonToString(const std::string& jsonFilePath);
   void parseArgument(const std::string &typeOfArgument, std::string &argument);
 
 public:

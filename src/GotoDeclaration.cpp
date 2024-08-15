@@ -1,56 +1,37 @@
 #include "GotoDeclaration.hpp"
 #include "JsonRpc.hpp"
+#include <algorithm>
 #include <cctype>
 
 void GotoDeclaration::parsePosition(std::string params) {}
 
 void GotoDeclaration::parseParams(std::string params) {
-  for (int pos = 0; pos < params.size(); pos++) {
-    if (params[pos] == '"') {
-      std::string keyword = "";
-      pos++;
-      while (params[pos] != '"') {
-        keyword += params[pos];
-        pos++;
-      }
-      pos++;
-      if (keyword == URI_KEYWORD) {
-        while (params[pos] != '}' && pos < params.size()) {
-          if (params[pos] != ' ' && params[pos] != '"' && params[pos] != ':') {
-            m_uri += params[pos];
-          }
-          pos++;
-        }
-      } else if (keyword == LINE_KEYWORD) {
-        std::string line = "";
-        while (params[pos] != ',' && pos < params.size()) {
-          if (std::isdigit(params[pos])) {
-            line += params[pos];
-          }
-          pos++;
-        }
-        m_line = std::stoi(line);
-      } else if (keyword == START_CHARACTER_KEYWORD) {
-        std::string startCharacter = "";
-        while (params[pos] != ',' && pos < params.size()) {
-          if (std::isdigit(params[pos])) {
-            startCharacter += params[pos];
-          }
-          pos++;
-        }
-        m_startCharacter = std::stoi(startCharacter);
-      } else if (keyword == END_CHARACTER_KEYWORD) {
-        std::string endCharacter = "";
-        while (params[pos] != '}' && pos < params.size()) {
-          if (std::isdigit(params[pos])) {
-            endCharacter += params[pos];
-          }
-          pos++;
-        }
-        m_endCharacter = std::stoi(endCharacter);
-      }
-    }
-  }
+  std::copy(params.begin() + params.find(URI_KEYWORD) + URI_KEYWORD.size(),
+            params.begin() + params.find('}'), std::back_inserter(m_uri));
+  std::string tempUri = m_uri.substr(m_uri.find('/'));
+  m_uri = tempUri.substr(0, tempUri.find('\"'));
+
+  std::string tempLine = "";
+  std::copy_if(params.begin() + params.find(LINE_KEYWORD) + LINE_KEYWORD.size(),
+               params.begin() + params.find(START_CHARACTER_KEYWORD),
+               std::back_inserter(tempLine),
+               [](char ch) { return std::isdigit(ch); });
+  m_line = std::stoi(tempLine);
+
+  std::string tempStartCharacter = "";
+  std::copy_if(params.begin() + params.find(START_CHARACTER_KEYWORD) +
+                   START_CHARACTER_KEYWORD.size(),
+               params.begin() + params.find(END_CHARACTER_KEYWORD),
+               std::back_inserter(tempStartCharacter),
+               [](char ch) { return std::isdigit(ch); });
+  m_startCharacter = std::stoi(tempStartCharacter);
+
+  std::string tempEndCharacter = "";
+  std::copy_if(params.begin() + params.find(END_CHARACTER_KEYWORD) +
+                   END_CHARACTER_KEYWORD.size(),
+               params.end(), std::back_inserter(tempEndCharacter),
+               [](char ch) { return std::isdigit(ch); });
+  m_endCharacter = std::stoi(tempEndCharacter);
 }
 
 std::string GotoDeclaration::getUri() { return m_uri; }
