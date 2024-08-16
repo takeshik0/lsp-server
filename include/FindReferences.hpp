@@ -1,17 +1,17 @@
 #pragma once
-#include "BaseMethod.hpp"
-#include "JsonRpc.hpp"
+#include "GotoDeclaration.hpp"
+#include <vector>
 
-class GotoDeclaration : public BaseMethod {
+class FindReferences : public GotoDeclaration{
 private:
   std::string m_uri;
   int m_line;
   int m_startCharacter;
   int m_endCharacter;
+
 public:
-  range gotoDeclaration(JsonRpc &json);
+  std::vector<range> findReferences(JsonRpc &json);
   
-  void parseParams(std::string params) override;
   std::string getUri();
   int getLine();
   int getStartCharacter();
