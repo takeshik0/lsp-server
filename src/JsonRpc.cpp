@@ -53,7 +53,7 @@ std::string JsonRpc::getParams() { return m_params; }
 std::string JsonRpc::getId() { return m_id; }
 std::string JsonRpc::getJsonrpc() { return m_jsonrpc; }
 
-void JsonRpc::parseRequest(std::string &jsonFilePath) {
+void JsonRpc::parseRequest(const std::string &jsonFilePath) {
   m_jsonrpc = jsonToString(jsonFilePath);
 
   parseArgument(JSONRPC_VAR_KEYWORD, m_jsonrpc_version);

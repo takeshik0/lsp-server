@@ -1,8 +1,8 @@
 #pragma once
-#include "JsonRpc.hpp"
+#include "BaseMethod.hpp"
 
 class Server {
 private:
 public:
-  range gotoDeclaration(JsonRpc &json);
+  Server(const std::string& jsonFilePath);
 };

@@ -1,6 +1,6 @@
 {
     "jsonrpc": "2.0",
-    "method": "gotoDefinition",
+    "method": "findReferences",
     "params": {
         "textDocument": {
             "uri": "/home/takeshipro/Desktop/c++_projects/lsp-server/example.txt"

@@ -35,6 +35,6 @@ public:
   std::string getParams();
   std::string getId();
 
-  void parseRequest(std::string &jsonFilePath);
+  void parseRequest(const std::string &jsonFilePath);
   JsonRpc() = default;
 };
