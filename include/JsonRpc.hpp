@@ -6,6 +6,7 @@ const std::string METHOD_KEYWORD = "method";
 const std::string PARAMS_KEYWORD = "params";
 const std::string ID_KEYWORD = "id";
 
+const std::string POSITION_KEYWORD = "position";
 const std::string URI_KEYWORD = "uri";
 const std::string LINE_KEYWORD = "line";
 const std::string START_CHARACTER_KEYWORD = "startCharacter";

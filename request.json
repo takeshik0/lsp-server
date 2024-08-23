@@ -3,7 +3,7 @@
     "method": "findReferences",
     "params": {
         "textDocument": {
-            "uri": "/home/takeshipro/Desktop/c++_projects/lsp-server/example.txt"
+            "uri": "/home/takeshi/c++_projects/lsp-server/example.txt"
         },
         "position": {
             "line": 6,
