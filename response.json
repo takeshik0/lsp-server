@@ -5,10 +5,20 @@
         "textDocument": {
             "uri": "/home/takeshi/c++_projects/lsp-server/example.txt"
         },
-        "position": {
-            "line": ,
-            "startCharacter": ,
-            "endCharacter": 
+        "position5": {
+            "line": 13,
+            "startCharacter": 0,
+            "endCharacter": 8
+        },
+		"position4": {
+            "line": 11,
+            "startCharacter": 0,
+            "endCharacter": 8
+        },
+		"position3": {
+            "line": 7,
+            "startCharacter": 0,
+            "endCharacter": 8
         },
 		"position2": {
             "line": 6,
