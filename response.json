@@ -3,7 +3,7 @@
     "method": "renameSymbol",
     "result": {
         "textDocument": {
-            "uri": "/home/takeshi/c++_projects/lsp-server/example.txt"
+            "uri": "/home/takeshi/c++_projects/lsp-server/backend/example.txt"
         },
         "position5": {
             "line": 13,

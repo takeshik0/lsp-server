@@ -32,8 +32,9 @@ ResponceGenerator::removeEmptyPosition(const std::string &jsonContent) {
   return tempFileContent;
 }
 
-ResponceGenerator::ResponceGenerator(JsonRpc &json, range result) {
-  std::ofstream response("response.json");
+ResponceGenerator::ResponceGenerator(JsonRpc &json,
+                                     const std::string &responseFilePath,
+                                     range result) {
   std::string tempFileContent = json.getJsonrpc();
 
   auto newEnd = std::remove_if(
@@ -59,11 +60,14 @@ ResponceGenerator::ResponceGenerator(JsonRpc &json, range result) {
                              END_CHARACTER_KEYWORD.size() +
                              3 /* ":  3 symbols (need to fix)*/,
                          std::to_string(result.end));
+
+  std::ofstream response(responseFilePath);
   response << tempFileContent;
 }
 
-ResponceGenerator::ResponceGenerator(JsonRpc &json, std::vector<range> result) {
-  std::ofstream response("response.json");
+ResponceGenerator::ResponceGenerator(JsonRpc &json,
+                                     const std::string &responseFilePath,
+                                     std::vector<range> result) {
   std::string tempFileContent = json.getJsonrpc();
 
   auto newEnd = std::remove_if(
@@ -115,6 +119,7 @@ ResponceGenerator::ResponceGenerator(JsonRpc &json, std::vector<range> result) {
                        [](char ch) { return std::isdigit(ch); }),
         positionSegment.end());
   }
+
+  std::ofstream response(responseFilePath);
   response << removeEmptyPosition(tempFileContent);
-  ;
 }
