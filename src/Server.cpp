@@ -14,7 +14,9 @@ Server::Server(const std::string &jsonFilePath) {
     ResponceGenerator response(json, result.gotoDeclaration(json));
   } else if (json.getMethod() == "findReferences") {
     FindReferences result;
-    result.findReferences(json);
-    //ResponceGenerator response(json, result.findReferences(json));
+    ResponceGenerator response(json, result.findReferences(json));
+   } else if (json.getMethod() == "renameSymbol") {
+    FindReferences result;
+    ResponceGenerator response(json, result.findReferences(json));
   };
 }
