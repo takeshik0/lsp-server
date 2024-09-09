@@ -7,29 +7,29 @@
 #include <string>
 #include <vector>
 
-std::string ResponceGenerator::removeEmptyPosition(const std::string& jsonContent) {
-    std::string tempFileContent = jsonContent;
+std::string
+ResponceGenerator::removeEmptyPosition(const std::string &jsonContent) {
+  std::string tempFileContent = jsonContent;
 
-    std::size_t positionStart = tempFileContent.find("\"position\": {");
-    if (positionStart != std::string::npos) {
-        std::size_t positionEnd = tempFileContent.find("}", positionStart);
+  std::size_t positionStart = tempFileContent.find("\"position\": {");
+  if (positionStart != std::string::npos) {
+    std::size_t positionEnd = tempFileContent.find("}", positionStart);
 
-        if (positionEnd != std::string::npos) {
-            tempFileContent.erase(positionStart, positionEnd - positionStart + 1);
+    if (positionEnd != std::string::npos) {
+      tempFileContent.erase(positionStart, positionEnd - positionStart + 1);
 
-            std::size_t commaPos = tempFileContent.find(",", positionStart);
-            if (commaPos != std::string::npos && (commaPos - positionStart) < 3) {
-                tempFileContent.erase(commaPos, 1);
-            }
-        }
+      std::size_t commaPos = tempFileContent.find(",", positionStart);
+      if (commaPos != std::string::npos && (commaPos - positionStart) < 3) {
+        tempFileContent.erase(commaPos, 1);
+      }
     }
+  }
 
-    //shitcode
-    std::size_t emptyLinePosition = tempFileContent.find("\"position");
-    tempFileContent.erase(emptyLinePosition - 3, 3); 
-    
-    
-    return tempFileContent;
+  // shitcode
+  std::size_t emptyLinePosition = tempFileContent.find("\"position");
+  tempFileContent.erase(emptyLinePosition - 3, 3);
+
+  return tempFileContent;
 }
 
 ResponceGenerator::ResponceGenerator(JsonRpc &json, range result) {
@@ -90,7 +90,7 @@ ResponceGenerator::ResponceGenerator(JsonRpc &json, std::vector<range> result) {
   int num = 0;
   for (const auto &it : result) {
     num++;
-    
+
     positionSegment.insert(
         positionSegment.find(POSITION_KEYWORD) +
             POSITION_KEYWORD.size() /* ":  3 symbols (need to fix)*/,
@@ -115,5 +115,6 @@ ResponceGenerator::ResponceGenerator(JsonRpc &json, std::vector<range> result) {
                        [](char ch) { return std::isdigit(ch); }),
         positionSegment.end());
   }
-  response << removeEmptyPosition(tempFileContent);;
+  response << removeEmptyPosition(tempFileContent);
+  ;
 }

@@ -1,6 +1,6 @@
 {
     "jsonrpc": "2.0",
-    "method": "findReferences",
+    "method": "renameSymbol",
     "result": {
         "textDocument": {
             "uri": "/home/takeshi/c++_projects/lsp-server/example.txt"
