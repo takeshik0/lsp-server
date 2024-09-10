@@ -1,0 +1,26 @@
+#main-header {
+  text-align: center;
+  width: 100%;
+}
+
+#line-after-header {
+  border-top: 1px solid #000; /* 1px solid black line */
+  margin: 10px 0; /* Space above and below the line */
+}
+
+#text-input {
+  height: 100%;
+  width: 100%; /* Full width of the container */
+  padding: 8px; /* Padding inside the input */
+  border: 1px solid #ccc; /* Border color */
+  border-radius: 4px; /* Rounded corners */
+}
+
+#text-area {
+  height: 100%;
+  width: 100%; /* Full width of the container */
+  padding: 8px; /* Padding inside the textarea */
+  border: 1px solid #ccc; /* Border color */
+  border-radius: 4px; /* Rounded corners */
+  resize: vertical; /* Allow vertical resizing only */
+}
